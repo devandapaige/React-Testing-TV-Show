@@ -17,16 +17,28 @@ const data = [
   },
 ];
 
-test("Episodes.js renders", () => {
+test("Episodes.js renders by default with no errors", () => {
   render(<Episodes episodes={[]} />);
 });
 
-test("Episodes shows data when rerendered with mock data"), () {
-    const {queryAllByTestId, rerender } = render(<Episodes episodes={[]} />);
-    
-    expect(queryAllByTestId("episode")).toHaveLength(0);
-    expect(queryAllByTestId("episode")).toStrictEqual([]);
-    
-    rerender(<Episodes episodes={data} />)
-    expect(queryAllByTestId("episode")).toHaveLength(0);
-}
+test("Episodes.js rerenders", () => {
+  const { rerender } = render(<Episodes episodes={[]} />);
+  const updatedData = [
+    {
+      id: 1,
+      season: 1,
+      name: "Episode 1",
+    },
+    {
+      id: 2,
+      season: 1,
+      name: "Episode 2",
+    },
+    {
+      id: 3,
+      season: 1,
+      name: "Episode 3",
+    },
+  ];
+  rerender(<Episodes episodes={updatedData} />);
+});
